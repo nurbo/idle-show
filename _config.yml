@@ -70,7 +70,7 @@ kramdown:
 
 sass:
   sass_dir: _sass
-  style: minified
+  style: compressed
 
 exclude:
   - .sass-cache/
