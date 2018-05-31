@@ -1,0 +1,76 @@
+// @import "clear";
+// @import "base";
+// @import "home";
+// @import "test";
+// @import "vendor/bootstrap/bootstrap";
+@import "home";
+
+#player {
+  width : 100% !important;
+  margin: 0 auto;
+  height: 64px;
+}
+
+.__sticky {
+  padding   : 0 !important;
+  background: white;
+}
+
+.plyr {
+  width: 100% !important;
+}
+
+.plyr__control svg {
+  width : 32px !important;
+  height: 32px !important;
+}
+
+.wrapper {
+  height: 50vh !important;
+}
+
+.carousel-inner,
+.carousel-item {
+  border-radius: 10px !important;
+  overflow     : hidden !important;
+}
+
+main.top {
+  margin-bottom: 2em;
+}
+
+.plyr__progress {
+  pointer-events: none !important;
+}
+
+figure {
+  width     : 100%;
+  object-fit: contain;
+
+  img {
+    max-height: 100%;
+    object-fit: contain;
+  }
+}
+
+#carousel {
+  padding-bottom: 1em;
+}
+
+.elem {
+  width : 100%;
+  height: 50vh;
+}
+
+ul {
+  li {
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.bg-transparent {
+  background    : rgba(0,0,0,0) !important;
+  pointer-events: none;
+}

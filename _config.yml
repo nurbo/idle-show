@@ -1,0 +1,76 @@
+# Configuration
+
+title: Idle Institute
+author: Idle Institute
+description: >-
+  The Idle Institute (est. 2017) is a storytelling lab:
+  a collective of writers, filmmakers, sound-artists and engineers founded by
+  Sonia Bernac and Eliot Allison. Combining theories of the public sphere with
+  quantum physics, they investigate the potentialities of the story – seen as
+  virtual matter and a precise political tool. This emerges from the
+  presumption of an unstable narrative field, in which they examine unexpected
+  couplings and clashes between narrative particles. The Idle Institute’s
+  projects build from narrative experiments: poetic traps in urban space,
+  phone pranks, impersonation games and sci-fi installations. Currently
+  developing a theory of the narratology of the public sphere, their
+  research explores narrative entanglement, machine(s) of writing and
+  technologies of storytelling. They cheat occasionally, but only when it
+  makes a good story...
+baseurl: ""
+url: "http://idle.institute"
+
+home:
+  text: Pick a machine...
+
+collections:
+  machine:
+    link: /machine/
+    output: true
+    permalink: /machine/:title/
+
+paths:
+  css: assets/css
+  img: assets/img
+  js:  assets/js
+
+plugins:
+  - octopress-autoprefixer
+
+header_includes:
+  css:
+    - https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css
+    - /assets/css/main.css
+    - /assets/css/plyr.css
+  javascript:
+    - https://code.jquery.com/jquery-3.3.1.min.js
+    - https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js
+    - /assets/js/carousel-swipe.js
+
+defaults:
+  - scope:
+      path: "assets/img"
+    values:
+      image: true
+  - scope:
+      path: "assets/img/machine"
+    values:
+      machine: true
+  - scope:
+      path: "assets/js"
+    values:
+      js: true
+
+permalink: pretty
+safe: false
+
+markdown: kramdown
+kramdown:
+  auto_id_stripping: true
+  auto_ids: true
+
+sass:
+  sass_dir: _sass
+  style: minified
+
+exclude:
+  - .sass-cache/

@@ -1,0 +1,111 @@
+---
+layout: default
+---
+{% assign machine_images = site.static_files | where: "machine", true %}
+{% assign first_iteration = true %}
+{% assign counter = 0 %}
+<div class="container sticky-top __sticky">
+  <nav class="navbar justify-content-between navbar-light bg-white">
+    <a role="button" class="btn btn-primary" href="{{ site.url }}/{{ site.baseurl }}">Go back</a>
+    <span class="navbar-text">Press play below...</span>
+  </nav>
+  <div class="container" style="padding-top: 1em;">
+    <audio id="player" crossorigin controls playsinline>
+      <source src="/assets/audio/{{ page.title }}.mp3" type="audio/mp3">
+    </audio>
+  </div>
+</div>
+<div class="container" style="margin-top: 1em;">
+  <div class="row align-items-top">
+    <div class="col-lg-7">
+      <div id="carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          {% for image in machine_images %}{% if image.path contains page.title %}
+          <li data-target="#carousel" data-slide-to="{{ counter }}"{% if first_iteration %} class="active"{% assign first_iteration = false %}{% endif %}></li>
+          {% assign counter = counter | plus: 1 %}
+          {% endif %}{% endfor %}
+        </ol>
+        <div class="carousel-inner">
+          {% assign first_iteration = true %}
+          {% for image in machine_images %}{% if image.path contains page.title %}
+          <div class="carousel-item{% if first_iteration %} active{% assign first_iteration = false %}{% endif %}">
+              <img class="img-fluid img-centered" src="{{ image.path }}" alt="">
+          </div>
+          {% endif %}{% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title" style="margin: 0;">{{ page.info }}</h4>
+        </div>
+        <div class="card-body">
+          {{ content }}
+          <button type="button" role="button" data-toggle="modal" data-target="#buy" class="btn btn-block btn-outline-primary">Buy for only {{ page.price | prepend: "£"}}!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="buy" tabindex="-1" role="dialog" aria-labelledby="buyTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="buyLongTitle">Confirm purchase</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>To buy the selected machine: {{ page.info | prepend: '"' | append: '"' | smarfity  }} please send an email with your contact details to <i>info@idle.institute</i> and we will get back to you with further details!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Array.prototype.includes,CustomEvent,Object.entries,Object.values,URL" crossorigin="anonymous"></script>
+<script src="https://cdn.plyr.io/3.3.10/plyr.js" crossorigin="anonymous"></script>
+<script src="https://cdn.plyr.io/3.3.10/demo.js" crossorigin="anonymous"></script>
+<script src="https://cdn.rangetouch.com/1.0.1/rangetouch.js" async="" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  document.getElementById('player').addEventListener('ready', event => {
+    console.log("Ready!");
+  });
+
+    const player = new Plyr("#player", {
+      "title": "{{ page.info }}",
+      "controls": ['play', 'progress', 'current-time'],
+      "autoplay": false,
+      "speed": {
+        selected: 1, options: [1]
+      },
+      "disableContextMenu": true
+    });
+
+    console.log("Player added.");
+
+    document.addEventListener('ended', () => {
+      console.log("Ended fired!");
+
+      setTimeout(() => {
+        window.location.replace("{{ site.url }}/{{ site.baseurl }}");
+      }, 2000);
+    });
+
+    $('.carousel').carousel({
+      swipe: 10
+    });
+  </script>

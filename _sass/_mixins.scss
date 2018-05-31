@@ -1,0 +1,36 @@
+@mixin contained-background($image) {
+  background         : url($image);
+  background-size    : contain;
+  background-repeat  : no-repeat;
+  background-position: center;
+}
+
+$small-break: 10px;
+$large-break: 1378px;
+
+@mixin small {
+  @media only screen and (max-width: $small-break - 1px) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media only screen and (min-width: $small-break) and (max-width: $large-break - 1px) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media only screen and (min-width: $large-break) {
+    @content;
+  }
+}
+
+@mixin debug {
+  *:not(path):not(g) {
+    color     : hsla(210, 100%, 100%, 0.9) !important;
+    background: hsla(210, 100%, 50%, 0.5) !important;
+    outline   : dashed 1px hsla(210, 100%, 100%, 0.5) !important;
+    box-shadow: none !important;
+  }
+}
