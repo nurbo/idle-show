@@ -65,6 +65,7 @@
           <li data-target="#carousel" data-slide-to="2"></li>
           
           
+          
         </ol>
         <div class="carousel-inner">
           
@@ -80,6 +81,7 @@
           <div class="carousel-item">
               <img class="img-fluid img-centered" src="/assets/img/machine/vision/3.jpg" alt="">
           </div>
+          
           
         </div>
         <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
@@ -123,7 +125,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>To buy the selected machine: "Machine for channeling vision whilst in motion" please send an email with your contact details to <i>info@idle.institute</i> and we will get back to you with further details!</p>
+        <p>To buy the selected machine: "Machine for channeling vision whilst in motion" please send an email with your contact details to <span id="email-modal"></span> and we will get back to you with further details!</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
@@ -167,5 +169,35 @@
   </script>
 
     </main>
+    <footer class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <small><small>Contact us at <span id="email"></span></small></small>
+    </div>
+    <div id="copy" class="col-md-8 text-md-right">
+      <small><small>Copyright &copy; 2018 <a href="http://idle.institute">Idle Institute</a> (<a href="http://bernac.org">Sonia Bernac</a>, <a href="https://www.eliothenryallison.com">Eliot Allison</a>) <small>All rights reserved</small></small></small>
+      </div>
+  </div>
+</footer>
+<script type="text/javascript" language="javascript">
+{ coded = "ySqU@yzrx.ySYfyf2fx"
+  key = "0F5vdLxbHVYMwrti1QDKJuNzBRnWpG8EkfyhTPZo2aO4CS79AegcqsXIlmU6j3"
+  shift=coded.length
+  link=""
+  for (i=0; i<coded.length; i++) {
+    if (key.indexOf(coded.charAt(i))==-1) {
+      ltr = coded.charAt(i)
+      link += (ltr)
+    }
+    else {
+      ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length
+      link += (key.charAt(ltr))
+    }
+  }
+document.getElementById("email").innerHTML = "<a href=\"mailto:" + link + "\">info@idle.institute</a>"
+document.getElementById("email-modal").innerHTML = "<a href=\"mailto:" + link + "\">info@idle.institute</a>"
+}
+</script>
+
   </body>
 </html>
