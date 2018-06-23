@@ -31,12 +31,13 @@
 
 .carousel-inner,
 .carousel-item {
-  border-radius: 10px !important;
+  border-radius: 5px !important;
   overflow     : hidden !important;
 }
 
 main.top {
   margin-bottom: 2em;
+  min-height   : 90vh;
 }
 
 .plyr__progress {
@@ -73,4 +74,9 @@ ul {
 .bg-transparent {
   background    : rgba(0,0,0,0) !important;
   pointer-events: none;
+  margin-bottom : -40px;
+}
+
+#copy {
+  line-height: 1;
 }

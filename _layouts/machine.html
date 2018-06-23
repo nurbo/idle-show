@@ -24,6 +24,9 @@ layout: default
           <li data-target="#carousel" data-slide-to="{{ counter }}"{% if first_iteration %} class="active"{% assign first_iteration = false %}{% endif %}></li>
           {% assign counter = counter | plus: 1 %}
           {% endif %}{% endfor %}
+          {% if page.video %}
+          <li data-target="#carousel" data-slide-to="{{ counter }}"></li>
+          {% endif %}
         </ol>
         <div class="carousel-inner">
           {% assign first_iteration = true %}
@@ -32,6 +35,13 @@ layout: default
               <img class="img-fluid img-centered" src="{{ image.path }}" alt="">
           </div>
           {% endif %}{% endfor %}
+          {% if page.video %}
+          <div class="carousel-item">
+              <video class="img-fluid img-centered"
+              src="{{ site.url }}/{{ site.baseurl }}/assets/video/{{ page.title }}.mp4"
+              autoplay playsinline muted loop controls style="">
+          </div>
+          {% endif %}
         </div>
         <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -67,7 +77,7 @@ layout: default
         </button>
       </div>
       <div class="modal-body">
-        <p>To buy the selected machine: {{ page.info | prepend: '"' | append: '"' | smarfity  }} please send an email with your contact details to <i>info@idle.institute</i> and we will get back to you with further details!</p>
+        <p>To buy the selected machine: {{ page.info | prepend: '"' | append: '"' | smarfity  }} please send an email with your contact details to <span id="email-modal"></span> and we will get back to you with further details!</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
